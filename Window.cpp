@@ -2,8 +2,8 @@
 
 const TCHAR Window::CLASSNAME[] = TEXT("ArcheRipperWndClass");
 
-const COLORREF Window::BGCOLOR = RGB(232, 232, 216);
-const COLORREF Window::FGCOLOR = RGB(104, 64, 16);
+const COLORREF Window::BGCOLOR = RGB(50, 50, 50);
+const COLORREF Window::FGCOLOR = RGB(50, 50, 50);
 
 HBRUSH Window::s_brush;
 ATOM Window::s_atom;
@@ -55,7 +55,7 @@ HRESULT Window::Create()
 	if (CreateWindowEx(
 		0,
 		CLASSNAME,
-		TEXT("Archeage Crest Ripper"),
+		TEXT("ArcheRage Crest Ripper"),
 		WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT,
 		CW_USEDEFAULT,
@@ -175,14 +175,14 @@ bool Window::OnCreate(CREATESTRUCT* cs)
 	dpiY = GetDeviceCaps(hDC, LOGPIXELSX);
 	ReleaseDC(m_hWnd, hDC);
 
-	int imgWidth = MulDiv(128, dpiX, 96),
-		imgHeight = MulDiv(128, dpiY, 96);
+	int imgWidth = MulDiv(256, dpiX, 96),
+		imgHeight = MulDiv(256, dpiY, 96);
 	
 	m_iml->Initialize(imgWidth, imgWidth, ILC_COLOR32, 0, 0);
 	SendMessage(m_hCtlLv, LVM_SETIMAGELIST, LVSIL_NORMAL, reinterpret_cast<LPARAM>(m_iml.p));
 
-	int itemWidth = MulDiv(imgWidth, 9, 8),
-		itemHeight = MulDiv(imgHeight, 9, 8);
+	int itemWidth = MulDiv(imgWidth, 7, 6),
+		itemHeight = MulDiv(imgHeight, 7, 6);
 
 	SendMessage(m_hCtlLv, LVM_SETICONSPACING, 0, MAKELPARAM(itemWidth, itemHeight));
 
